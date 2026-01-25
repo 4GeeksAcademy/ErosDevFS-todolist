@@ -1,11 +1,88 @@
-/* 
+h1{
+  color: rgb(215, 186, 178);
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.form-control{
+    border-radius: 0;
+    border-bottom: none;
+}
+.list-group{
+    border-radius: 0;
+    border-top: none;
 
-*/
+}
+.card{
+    border-top: none;
+    border-radius: 0;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.15);
+}
+
+
+
+.close-btn {
+  filter: 
+    invert(78%)
+    sepia(20%)
+    saturate(350%)
+    hue-rotate(340deg)
+    brightness(95%)
+    contrast(90%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+
+.list-item:hover .close-btn {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.close-btn:hover {
+  filter: invert(70%)
+    sepia(35%)
+    saturate(500%)
+    hue-rotate(345deg)
+    brightness(90%)
+    contrast(95%);
+}
+
+
+.stacked-card {
+  position: relative;
+  background: white;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.stacked-card::before,
+.stacked-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98%;
+  height: 100%;
+  background: white;
+  border-radius: 0;
+  z-index: -1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+
+.stacked-card::before {
+  width: 98%;
+  height: 12px;
+  bottom: -6px;
+  z-index: -1;
+}
+
+
+.stacked-card::after {
+  width: 96%;
+  height: 12px;
+  bottom: -12px;
+  z-index: -2; 
+}
