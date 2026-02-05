@@ -86,3 +86,14 @@ h1{
   bottom: -12px;
   z-index: -2; 
 }
+
+.btn-primary{
+  background-color: rgb(215, 186, 178);
+  border: none;
+}
+
+
+.btn-primary:hover{
+  background-color: rgb(219, 217, 216);
+  border: none;
+}
