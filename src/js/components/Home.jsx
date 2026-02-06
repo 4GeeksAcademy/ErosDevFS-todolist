@@ -6,10 +6,15 @@ const Home = () => {
 	const [newTask, setNewTask] = useState('');
 
 	useEffect(()=>{
-		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
-		.then(response => response.json())
-		.then(data => setList(data.todos))
+		getList()
 	}, [])
+
+	
+	function getList(){
+		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
+		.then(response=> response.json())
+		.then(data => setList(data.todos))
+	}
 	
 
 	const addElement = (word) => {
@@ -24,7 +29,8 @@ const Home = () => {
 
 		fetch('https://playground.4geeks.com/todo/todos/erosdevfs', requestOptions)
 			.then(response => response.json())
-			
+
+		getList()
 
 	}
 
@@ -40,9 +46,7 @@ const Home = () => {
 			}
 		}
 
-		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
-		.then(response => response.json())
-		.then(data => setList(data.todos))
+		getList()
 
 	};
 
@@ -52,12 +56,7 @@ const Home = () => {
 		}
 
 		fetch(`https://playground.4geeks.com/todo/todos/${id}`, requestOptions)
-			.then(response => response.json())
-			.then(data => console.log(data.todos));
-
-		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
-		.then(response => response.json())
-		.then(data => setList(data.todos))
+		getList()
 		
 	}
 
@@ -66,17 +65,12 @@ const Home = () => {
 		const requestOptions = {
 			method: "DELETE",
 		}
-
 		list.map(task=>{
 			fetch(`https://playground.4geeks.com/todo/todos/${task.id}`, requestOptions)
-			.then(response => response.json())
-			.then(data => console.log(data.todos));
+			
 		})
-		
 
-		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
-		.then(response => response.json())
-		.then(data => setList(data.todos))
+		getList()
 	}
 
 
