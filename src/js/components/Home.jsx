@@ -10,11 +10,28 @@ const Home = () => {
 	}, [])
 
 	
-	function getList(){
-		fetch('https://playground.4geeks.com/todo/users/erosdevfs')
-		.then(response=> response.json())
-		.then(data => setList(data.todos))
+	const getList = async() =>{
+		try{
+			const response = await 
+			fetch('https://playground.4geeks.com/todo/users/erosdevfs')
+				if(response.status === 404){
+					const usuario = await
+				fetch('https://playground.4geeks.com/todo/users/erosdevfs', {
+					 method: 'POST',
+					 headers: {'Content-Type': 'application/json'
+					 }
+				}) 
+				return 
+			}
+			const data = await response.json()
+			setList(data.todos)
+
+		} catch (error) {
+			console.log(error)
+    	} 
 	}
+		
+	
 	
 
 	const addElement = (word) => {
@@ -50,27 +67,43 @@ const Home = () => {
 
 	};
 
-	const delElement = (id) => {
+	const delElement = async (id) => {
 		const requestOptions = {
 			method: "DELETE",
+			headers: { 'Content-Type': 'application/json' }
 		}
-
-		fetch(`https://playground.4geeks.com/todo/todos/${id}`, requestOptions)
-		getList()
+		
+		try{
+			const response = await 
+			fetch(`https://playground.4geeks.com/todo/todos/${id}`, requestOptions)
+				if(response.status === 204){
+					return getList()
+				} 
+				return 
+			} catch(error){
+				console.log(error)
+			}
 		
 	}
 
 
-	function deleteAll(){
+	const deleteAll = async()=>{
 		const requestOptions = {
 			method: "DELETE",
+			headers: { 'Content-Type': 'application/json' }
 		}
-		list.map(task=>{
-			fetch(`https://playground.4geeks.com/todo/todos/${task.id}`, requestOptions)
-			
-		})
 
-		getList()
+		try{
+			for(const task of list){
+				await fetch(`https://playground.4geeks.com/todo/todos/${task.id}`, requestOptions)
+				
+			}
+			getList()
+			
+		}catch(error){
+				console.log(error)
+		}
+		
 	}
 
 
